@@ -13,7 +13,7 @@ A1 = imdilate(A, B1);
 montage({A,A1})
 ```
 Output
-<p align="center"> <img src="assets/dilation.jpg" /> </p>
+<p align="center"> <img src="assets/dilation.png" /> </p>
 
 > Change the structuring element (SE) to all 1's:
 Input
@@ -25,7 +25,7 @@ montage({A,A1})
 ```
 
 Output
-<p align="center"> <img src="assets/dilation2.jpg" /> </p>
+<p align="center"> <img src="assets/dilation2.png" /> </p>
 
 
 > Try making the SE larger.
@@ -40,7 +40,7 @@ A1 = imdilate(A, B1);
 montage({A,A1})
 ```
 Output
-<p align="center"> <img src="assets/dilation3.jpg" /> </p>
+<p align="center"> <img src="assets/dilation3.png" /> </p>
 
 > What happens if you dilate the original image with B1 twice (or more times)?
 Input
@@ -56,7 +56,7 @@ montage({A,A1,A2,A3})
 ```
 
 Output
-<p align="center"> <img src="assets/dilation4.jpg" /> </p>
+<p align="center"> <img src="assets/dilation4.png" /> </p>
 
 ### Generation of structuring element
 
