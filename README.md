@@ -1,18 +1,9 @@
 # Lab 4 - Morphological Image Processing
-*_Peter Cheung, version 1.0, 8 Feb 2024_*
-
-
-In this laboratory session, you will explore the use of various morphological operators and get a feel of how they modify visual information.  
-
-As before, clone this repository to your laptop and keep your experimental logbook on your repo.  Some students add their results, observations, reflections, etc. directly onto the README.md file.  This turns the Lab Instruction into their logbook.  Clever move!
 
 ## Task 1: Dilation and Erosion
 
-Matlab provides a collection of morphological functions.  Here is a list of them:
-
-<p align="center"> <img src="assets/morphological_operators.jpg" /> </p>
-
 ### Dilation Operation
+Input
 ```
 A = imread('assets/text-broken.tif');
 B1 = [0 1 0;
@@ -21,21 +12,51 @@ B1 = [0 1 0;
 A1 = imdilate(A, B1);
 montage({A,A1})
 ```
+Output
+<p align="center"> <img src="assets/dilation.jpg" /> </p>
 
-> Change the structuring element (SE) to all 1's.  Instead of enumerating it, you can do that with the function _ones_:
+> Change the structuring element (SE) to all 1's:
+Input
 ```
-B2 = ones(3,3);     % generate a 3x3 matrix of 1's
+A = imread('assets/text-broken.tif');
+B1 = ones(3,3);    % create structuring element
+A1 = imdilate(A, B1);
+montage({A,A1})
 ```
+
+Output
+<p align="center"> <img src="assets/dilation2.jpg" /> </p>
+
 
 > Try making the SE larger.
 > Try to make the SE diagonal cross:
+Input
 ```
-Bx = [1 0 1;
-      0 1 0;
-      1 0 1];
+A = imread('assets/text-broken.tif');
+B1 = [1 0 1;
+    0 1 0;
+    1 0 1];% create structuring element
+A1 = imdilate(A, B1);
+montage({A,A1})
 ```
+Output
+<p align="center"> <img src="assets/dilation3.jpg" /> </p>
 
 > What happens if you dilate the original image with B1 twice (or more times)?
+Input
+```
+A = imread('assets/text-broken.tif');
+B1 = [0 1 0;
+     1 1 1;
+     0 1 0];    % create structuring element
+A1 = imdilate(A, B1);
+A2 = imdilate(A1,B1);
+A3 = imdilate(A2,B1);
+montage({A,A1,A2,A3})
+```
+
+Output
+<p align="center"> <img src="assets/dilation4.jpg" /> </p>
 
 ### Generation of structuring element
 
