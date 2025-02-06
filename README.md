@@ -64,22 +64,27 @@ For spatial filtering, we used function _fspecial_ to generate our filter kernel
 
 Here is a list of SE that _strel_ can generate:
 
-<p align="center"> <img src="assets/strel.jpg" /> </p>
-
-For example, to generate a disk with radius r = 4:
-
+Input
 ```
 SE = strel('disk',4);
 SE.Neighborhood         % print the SE neighborhood contents
 ```
+Output (not an  array, but a data structure)
+ans =
 
-_strel_ returns not a matrix, but an internal data structure called _strel_. This speeds up the execution of the morphological functions by Matlab.
+  7×7 logical array
 
+   0   0   1   1   1   0   0
+   0   1   1   1   1   1   0
+   1   1   1   1   1   1   1
+   1   1   1   1   1   1   1
+   1   1   1   1   1   1   1
+   0   1   1   1   1   1   0
+   0   0   1   1   1   0   0
 
 ### Erosion Operation
 
-Explore erosion with the following:
-
+Input
 ```
 clear all
 close all
@@ -92,27 +97,107 @@ E10 = imerode(A,SE10);
 E20 = imerode(A,SE20);
 montage({A, E2, E10, E20}, "size", [2 2])
 ```
-Comment on the results.
 
+Output
+<p align="center"> <img src="assets/erosion.png" /> </p>
+
+Comments:
+- See how repeated erosion removes lines
+- Smaller lines are removed first
+- Larger objects are reduced in size
+
+  
 ## Task 2 - Morphological Filtering with Open and Close
 
 ### Opening = Erosion + Dilation
-In this task, you will explore the effect of using Open and Close on a binary noisy fingerprint image.
+Input
+```
+clear all
+close all
+f = imread('assets/fingerprint-noisy.tif');
+SE = strel('disk',3);
+fe = imerode(f,SE);
+fed = imdilate(fe,SE);
+fo = imopen(fed,SE);
+montage({f, fe, fed, fo}, "size", [2 2])
+```
 
-1. Read the image file 'finger-noisy.tif' into _f_.
-2. Generate a 3x3 structuring element SE.
-3. Erode _f_ to produce _f_e.
-4. Dilate _fe_ to produce _fed_.
-5. Open _f_ to produce _fo_.
-6. Show _f_, _fe_, _fed_ and _fo_ as a 4 image montage.
+Output
+<p align="center"> <img src="assets/morph.png" /> </p>
 
-Comment on the the results.
+Comments:
+- The initial erosion gets rid of too much detail and removes almost all identifiers
+- The dilate expands the remaining data
+- The opening has little effect, slightly further expanding the data
 
-Explore what happens with other size and shape of structuring element.
+Array SE:
+Input
+```
+clear all
+close all
+f = imread('assets/fingerprint-noisy.tif');
+SE =ones(3,3);
+fe = imerode(f,SE);
+fed = imdilate(fe,SE);
+fo = imopen(fed,SE);
+montage({f, fe, fed, fo}, "size", [2 2])
+```
+
+Output
+<p align="center"> <img src="assets/SE.png" /> </p>
+
+Input
+```
+f = imread('assets/fingerprint-noisy.tif');
+SE =[0 1 0;
+    1 1 1 ;
+    0 1 0];
+fe = imerode(f,SE);
+fed = imdilate(fe,SE);
+fo = imopen(fed,SE);
+montage({f, fe, fed, fo}, "size", [2 2])
+```
+Output
+<p align="center"> <img src="assets/SE2.png" /> </p>
 
 Improve the image _fo__ with a close operation.
+Input
+```
+clear all
+close all
+f = imread('assets/fingerprint-noisy.tif');
+SE = ones(3,3);
+fe = imerode(f,SE);
+fed = imdilate(fe,SE);
+fo = imopen(fed,SE);
+fo = imclose(fo,SE);
+montage({f, fe, fed, fo}, "size", [2 2])
+```
 
-Finally, compare morphological filtering using Open + Close to spatial filter with a **Gaussian filter**. Comment on your comparison.
+Output
+<p align="center"> <img src="assets/SE3.png" /> </p>
+
+
+Finally, compare morphological filtering using Open + Close to spatial filter with a **Gaussian filter**.
+Input
+```
+clear all
+close all
+f = imread('assets/fingerprint-noisy.tif');
+SE = ones(3,3);
+fe = imopen(f,SE);
+fo = imclose(fe,SE);
+gaus = fspecial('Gaussian', [7 7], 1.0)
+fu = imfilter(f,gaus,0);
+montage({fo, fu})
+```
+Output
+<p align="center"> <img src="assets/compare.png" /> </p>
+
+Comments:
+- Gaussian filter generally left more noise, but got rid of less important data
+- Open/close did result in some cracking in the image forms
+- Gaussian looks more clear
 
 ## Task 3 - Boundary detection 
 
