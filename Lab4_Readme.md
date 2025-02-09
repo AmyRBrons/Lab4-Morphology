@@ -103,7 +103,7 @@ E20 = imerode(A,SE20);
 montage({A, E2, E10, E20}, "size", [2 2])
 ```
 Output
-<p align="center"> <img src="assets/erosion.png" style="width:250px%"/> </p>
+<p align="center"> <img src="assets/erosion.png" style="width:250px"/> </p>
 
 Comments:
 - See how repeated erosion removes lines
@@ -457,7 +457,9 @@ numPixels = cellfun(@numel, CC.PixelIdxList);
 f(CC.PixelIdxList{idx}) = 0;
 imshow(f)
 ```
-<p align="center"> <img src="assets/palm_lines.png" style="width:250 px"/> </p>
+Output 
+<p align="center"> <img src="assets/palm_lines.png" style="width: 250px"/> </p>
+
 <BR><BR>
 
 3. The file _'assets/normal-blood.png'_ is a microscope image of red blood cells. Using various techniques you have learned, write a Matlab .m script to count the number of red blood cells.
