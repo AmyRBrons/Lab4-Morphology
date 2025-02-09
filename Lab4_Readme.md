@@ -1,5 +1,5 @@
-## Lab 4 - Morphological Image Processing
-# Amy Brons - Design of Visual Systems
+# Lab 4 - Morphological Image Processing
+## Amy Brons - Design of Visual Systems
 Below is the logbook for Lab 4, and the full MATLAB code for this lab can be found in attached MATLAB file. 
 
 ## Task 1: Dilation and Erosion
