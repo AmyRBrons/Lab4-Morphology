@@ -4,7 +4,7 @@ Below is the logbook for Lab 4, and the full MATLAB code for this lab can be fou
 
 ## Task 1: Dilation and Erosion
 Matlab provides a collection of morphological functions. Here is a list of them:
-<p align="center"> <img src="assets/morphological_operators.jpg" style="width=40%"; /> </p>
+<p align="center"> <img src="assets/morphological_operators.jpg" style="width=30%"; /> </p>
 
 ### Dilation Operation
 Input
@@ -17,7 +17,7 @@ A1 = imdilate(A, B1);
 montage({A,A1})
 ```
 Output
-<p align="center"> <img src="assets/dilation.png" /> </p>
+<p align="center"> <img src="assets/dilation.png" style="width=30%"/> </p>
 
 > Change the structuring element (SE) to all 1's:
 Input
@@ -28,7 +28,7 @@ A1 = imdilate(A, B1);
 montage({A,A1})
 ```
 Output
-<p align="center"> <img src="assets/dilation2.png" /> </p>
+<p align="center"> <img src="assets/dilation2.png" style="width=30%" /> </p>
 
 
 > Try making the SE larger.
@@ -43,7 +43,7 @@ A1 = imdilate(A, B1);
 montage({A,A1})
 ```
 Output
-<p align="center"> <img src="assets/dilation3.png" /> </p>
+<p align="center"> <img src="assets/dilation3.png" style="width=30%" /> </p>
 
 > What happens if you dilate the original image with B1 twice (or more times)?
 Input
@@ -58,14 +58,14 @@ A3 = imdilate(A2,B1);
 montage({A,A1,A2,A3})
 ```
 Output
-<p align="center"> <img src="assets/dilation4.png" /> </p>
+<p align="center"> <img src="assets/dilation4.png" style="width=30%"/> </p>
 
 ### Generation of structuring element
 
 For spatial filtering, we used function _fspecial_ to generate our filter kernel.  For morphological operations, we use function _strel_ to generate different kinds of structuring elements.
 
 Here is a list of SE that _strel_ can generate:
-<p align="center"> <img src="assets/strel.jpg" /> </p>
+<p align="center"> <img src="assets/strel.jpg" style="width=30%"/> </p>
 
 Input
 ```
@@ -77,8 +77,8 @@ ans =
 
   7×7 logical array
 
-   0   0   1   1   1   0   0
-   0   1   1   1   1   1   0
+   0   0   1   1   1   0   0 <BR>
+   0   1   1   1   1   1   0 <BR>
    1   1   1   1   1   1   1
    1   1   1   1   1   1   1
    1   1   1   1   1   1   1
@@ -102,7 +102,7 @@ E20 = imerode(A,SE20);
 montage({A, E2, E10, E20}, "size", [2 2])
 ```
 Output
-<p align="center"> <img src="assets/erosion.png" /> </p>
+<p align="center"> <img src="assets/erosion.png" style="width=30%"/> </p>
 
 Comments:
 - See how repeated erosion removes lines
@@ -134,7 +134,7 @@ montage({f, fe, fed, fo}, "size", [2 2])
 ```
 
 Output
-<p align="center"> <img src="assets/morph.png" /> </p>
+<p align="center"> <img src="assets/morph.png" style="width=30%"/> </p>
 
 Comments:
 - The initial erosion gets rid of too much detail and removes almost all identifiers
@@ -155,7 +155,7 @@ montage({f, fe, fed, fo}, "size", [2 2])
 ```
 
 Output
-<p align="center"> <img src="assets/SE.png" /> </p>
+<p align="center"> <img src="assets/SE.png" style="width=30%"/> </p>
 
 Explore what happens with other size and shape of structuring element version 2:
 
@@ -172,7 +172,7 @@ montage({f, fe, fed, fo}, "size", [2 2])
 ```
 
 Output
-<p align="center"> <img src="assets/SE2.png" /> </p>
+<p align="center"> <img src="assets/SE2.png" style="width=30%"/> </p>
 
 Improve the image _fo__ with a close operation:
 
@@ -190,7 +190,7 @@ montage({f, fe, fed, fo}, "size", [2 2])
 ```
 
 Output
-<p align="center"> <img src="assets/SE3.png" /> </p>
+<p align="center"> <img src="assets/SE3.png" style="width=30%"/> </p>
 
 
 Finally, compare morphological filtering using Open + Close to spatial filter with a **Gaussian filter**:
@@ -208,7 +208,7 @@ fu = imfilter(f,gaus,0);
 montage({fo, fu})
 ```
 Output
-<p align="center"> <img src="assets/compare.png" /> </p>
+<p align="center"> <img src="assets/compare.png" style="width=30%"/> </p>
 
 Comments:
 - Gaussian filter generally left more noise, but got rid of less important data
@@ -231,7 +231,7 @@ imshow(BW)
 ```
 
 Output
-<p align="center"> <img src="assets/BW.png" /> </p>
+<p align="center"> <img src="assets/BW.png" style="width=30%"/> </p>
 
 Diplay as montage {I, BW, erosed BW and boundary detected image}:
 
@@ -250,7 +250,7 @@ montage({I,BW,BW_eroded,BW_boundary})
 ```
 
 Output
-<p align="center"> <img src="assets/BWMontage.png" /> </p>
+<p align="center"> <img src="assets/BWMontage.png" style="width=30%" /> </p>
 
 Comments:
 - The detection highlights the edges effectively.
@@ -260,7 +260,7 @@ Comments:
 
 
 Here is an example with open applied:
-<p align="center"> <img src="assets/BWOpen.png" /> </p>
+<p align="center"> <img src="assets/BWOpen.png" style="width=30%"/> </p>
 
 
 ## Task 4 - Function bwmorph - thinning and thickening
@@ -286,7 +286,7 @@ montage({f,g1,g2,g3,g4,g5})
 ```
 
 Output
-<p align="center"> <img src="assets/thinning.png" /> </p>
+<p align="center"> <img src="assets/thinning.png" style="width=30%"/> </p>
 
 Comments:
 - Reduced structures and thinned lines, which makes fingerprint distinctions less and less recognizable
@@ -299,7 +299,7 @@ g_inf = bwmorph(BW_f, 'thin', inf);
 ```
 
 Output
-<p align="center"> <img src="assets/finger.png" /> </p>
+<p align="center"> <img src="assets/finger.png" style="width=30%"/> </p>
 
 Modify your matlab code so that the fingerprint is displayed black lines on white background instead of white on black:
 Input added
@@ -308,7 +308,7 @@ BW_f = imcomplement(BW_f)
 ```
 
 Output
-<p align="center"> <img src="assets/fingerWB.png" /> </p>
+<p align="center"> <img src="assets/fingerWB.png" style="width=30%"/> </p>
 
 
 What conclusion can you draw about the relationship between thinning and thickening?
@@ -331,7 +331,7 @@ imshow(t)
 CC = bwconncomp(t)
 ```
 Output
-<p align="center"> <img src="assets/text_conn.png" /> </p>
+<p align="center"> <img src="assets/text_conn.png" style="width=30%"/> </p>
 
 
 To determine which is the largest component:
@@ -346,7 +346,7 @@ imshow(t)
 ```
 
 Output
-<p align="center"> <img src="assets/text_conn2.png" /> </p>
+<p align="center"> <img src="assets/text_conn2.png" style="width=30%"/> </p>
 
 
 ## Task 6 - Morphological Reconstruction
@@ -366,7 +366,7 @@ montage({f, g, fo, fr}, "size", [2 2])
 ```
 
 Output
-<p align="center"> <img src="assets/text_recon.png" /> </p>
+<p align="center"> <img src="assets/text_recon.png" style="width=30%"/> </p>
 
 Comments:
 - Initial image is quite blurry and hard to read, lots of lost data
@@ -384,7 +384,7 @@ montage({f, ff})
 ```
 
 Output
-<p align="center"> <img src="assets/text_recon2.png" /> </p>
+<p align="center"> <img src="assets/text_recon2.png" style="width=30%"/> </p>
 
 Comments:
 - Fill leads to more confusion in reading as circular letters get filled in
@@ -405,7 +405,7 @@ montage({f, gd, ge, gg}, 'size', [2 2])
 ```
 
 Output
-<p align="center"> <img src="assets/CTScans.png" /> </p>
+<p align="center"> <img src="assets/CTScans.png" style="width=30%"/> </p>
 
 Comments:
 - After dialtion, the CT scan seems more bright and clear, but dark spots seem to lack the same depth. Some clarity is lost on external edges
@@ -437,7 +437,7 @@ title(['Number of fillings: ', num2str(numFillings)]);```
 
 ```
 Output
-<p align="center"> <img src="assets/fillings.png" /> </p>
+<p align="center"> <img src="assets/fillings.png" style="width=30%"/> </p>
 
 
 2. The file _'assets/palm.tif'_ is a palm print image in grayscale. Produce an output image that contains the main lines without all the underlining non-characteristic lines.
@@ -457,7 +457,7 @@ numPixels = cellfun(@numel, CC.PixelIdxList);
 f(CC.PixelIdxList{idx}) = 0;
 imshow(f)
 ```
-<p align="center"> <img src="assets/palm_lines.png" /> </p>
+<p align="center"> <img src="assets/palm_lines.png" style="width=30%"/> </p>
 
 
 3. The file _'assets/normal-blood.png'_ is a microscope image of red blood cells. Using various techniques you have learned, write a Matlab .m script to count the number of red blood cells.
@@ -476,4 +476,4 @@ imshow(f);
 title(['Number of Red Blood Cells: ', num2str(numCells)]);
 ```
 Output
-<p align="center"> <img src="assets/bloodcells.png" /> </p>
+<p align="center"> <img src="assets/bloodcells.png" style="width=30%"/> </p>
