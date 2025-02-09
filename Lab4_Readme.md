@@ -4,7 +4,7 @@ Below is the logbook for Lab 4, and the full MATLAB code for this lab can be fou
 
 ## Task 1: Dilation and Erosion
 Matlab provides a collection of morphological functions. Here is a list of them:
-<p align="center"> <img src="assets/morphological_operators.jpg" style="width:200px"; /> </p>
+<p align="center"> <img src="assets/morphological_operators.jpg" style="width=40%"; /> </p>
 
 ### Dilation Operation
 Input
