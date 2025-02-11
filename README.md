@@ -33,6 +33,7 @@ Output
 
 > Try making the SE larger.
 > Try to make the SE diagonal cross:
+
 Input
 ```
 A = imread('assets/text-broken.tif');
@@ -59,6 +60,10 @@ montage({A,A1,A2,A3})
 ```
 Output
 <p align="center"> <img src="assets/dilation4.png" style="width:250px"/> </p>
+
+Comments:
+-When we dilated the text multiple times, I noticed how the broken letters started connecting. This could be super useful for fixing damaged text in old documents or scanned images that aren't perfect.
+- The structuring element (SE) shape and size directly affect how the image gets modified. The cross-shaped SE gave totally different results compared to the square one
 
 ### Generation of structuring element
 
@@ -87,6 +92,10 @@ ans =
    0   0   1   1   1   0   0 
 ```
 
+Comments:
+-The strel function is so much more convenient than manually creating arrays
+-The disk shape especially seems useful since it treats all directions equally
+
 ### Erosion Operation
 
 Input
@@ -109,6 +118,7 @@ Comments:
 - See how repeated erosion removes lines
 - Smaller lines are removed first
 - Larger objects are reduced in size
+- Erosion shrinks everything while dilation expands. 
 
   <BR>
 ## Task 2 - Morphological Filtering with Open and Close
@@ -212,6 +222,7 @@ Output
 <p align="center"> <img src="assets/compare.png" style="width:250px"/> </p>
 
 Comments:
+- The sequence of operations really matters. Doing erosion then dilation (opening) has a completely different effect than dilation then erosion (closing).
 - Gaussian filter generally left more noise, but got rid of less important data
 - Open/close did result in some cracking in the image forms
 - Gaussian looks more clear
@@ -258,6 +269,7 @@ Comments:
 - Noise is an issue.
 - To improve, we can may apply morphological operations (opening, etc.)
 - The structuring element could also improve the output
+- The way we subtract the eroded image to get boundaries is much simpler than complex calculations.
 <BR>
 
 Here is an example with open applied:
@@ -292,6 +304,7 @@ Output
 Comments:
 - Reduced structures and thinned lines, which makes fingerprint distinctions less and less recognizable
 - Finding differences between lines becomes more difficult
+- Finding the essential structure of the pattern
 <BR>
 What will happen if you keep thinning the image?:
 Input added
@@ -349,6 +362,11 @@ Output
 <p align="center"> <img src="assets/text_conn2.png" style="width:250px"/> </p>
 
 <BR>
+Comments
+- Being able to count and measure different components in an image automatically is huge
+-I see this being useful in medical imaging 
+<BR><BR>
+
 ## Task 6 - Morphological Reconstruction
 1. Find the marker image g by eroding the mask with an se that mark the places where the desirable features are located. In our case, the desired characters are all with long vertical elements that are 17 pixels tall. Therefore the se used for erosion is a 17x1 of 1's.
 2. Apply the reconstruction operation using Matlab's imreconstruct functino between the marker g and the mask f.
@@ -390,6 +408,7 @@ Comments:
 - Fill leads to more confusion in reading as circular letters get filled in
 - Some improvement on contrast and added thickness of lines
 <BR>
+
 ## Task 7 - Morphological Operations on Grayscale images
 In this task, we will explore the effect of erosion and dilation on grayscale images:
 
